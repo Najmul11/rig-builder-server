@@ -7,7 +7,7 @@ import { routes } from './app/routes';
 
 const app: Application = express();
 
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
+app.get('/', (req: Request, res: Response) => {
   res.send(`Rig builder server running on PORT ${config.port}`);
 });
 
