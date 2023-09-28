@@ -25,7 +25,7 @@ const getAllProducts = async (
     sortConditions[sortBy] = sortOrder;
   }
 
-  const { searchTerm, minPrice, maxPrice, ...filtersData } = filters;
+  const { searchTerm, minPrice, maxPrice, featured, ...filtersData } = filters;
   const andConditions = [];
 
   if (searchTerm) {
@@ -45,6 +45,9 @@ const getAllProducts = async (
 
   if (maxPrice) {
     andConditions.push({ price: { $lte: parseFloat(maxPrice) } });
+  }
+  if (featured) {
+    andConditions.push({ featured: true });
   }
 
   if (Object.keys(filtersData).length) {

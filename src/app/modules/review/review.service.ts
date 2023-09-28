@@ -29,8 +29,8 @@ const postReview = async (
 
     if (existingReview) {
       await Review.findByIdAndUpdate(existingReview._id, {
-        review: payload?.review,
-        rating: payload?.rating || 1,
+        review: payload?.review ? payload.review : existingReview.review,
+        rating: payload?.rating ? payload.rating : existingReview.rating,
       }).session(session);
 
       newReviewAllData = existingReview;
@@ -39,7 +39,7 @@ const postReview = async (
         productId,
         user,
         review: payload?.review,
-        rating: payload?.rating || 1,
+        rating: payload?.rating || 0,
       };
 
       const newReview = await Review.create([newPayload], { session });
@@ -50,7 +50,9 @@ const postReview = async (
       newReviewAllData = newReview[0];
     }
 
-    const productReviews = await Review.find({}).session(session);
+    const productReviews = await Review.find({
+      productId: newReviewAllData.productId,
+    }).session(session);
 
     const totalRating = productReviews.reduce(
       (acc, review) => acc + review.rating,

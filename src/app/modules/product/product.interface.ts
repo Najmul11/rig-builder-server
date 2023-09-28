@@ -21,6 +21,7 @@ export type IProductFilters = {
   maxPrice?: string;
   category?: string;
   status?: string;
+  featured?: boolean;
 };
 
 export type ProductModel = Model<IProduct, Record<string, unknown>>;

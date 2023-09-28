@@ -23,7 +23,7 @@ const UserSchema = new Schema<IUser, Record<string, unknown>, IUserMethods>({
 UserSchema.methods.isUserExist = async function (
   email: string,
 ): Promise<Partial<IUser> | null> {
-  return await User.findOne({ email }, { _id: 1, email: 1, password: 1 });
+  return await User.findOne({ email }, { _id: 1, fullName: 1, password: 1 });
 };
 
 UserSchema.methods.isPasswordMatched = async function (

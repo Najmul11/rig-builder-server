@@ -6,4 +6,5 @@ export const productFilterableFields = [
   'maxPrice',
   'category',
   'status',
+  'featured',
 ];

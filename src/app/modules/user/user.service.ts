@@ -9,6 +9,11 @@ import { Secret } from 'jsonwebtoken';
 import { jwtHelpers } from '../../../jwt/jwtHelper';
 
 const createUser = async (user: IUser): Promise<IUser | null> => {
+  const { email } = user;
+  const userExist = await User.findOne({ email });
+  if (userExist)
+    throw new ApiError(httpStatus.BAD_REQUEST, 'User already exist');
+
   const result = await User.create(user);
   const sanitizedResult = await User.findById(result._id).select('-password');
   return sanitizedResult;
@@ -32,16 +37,16 @@ const userLogin = async (payload: IUserLogin): Promise<IUserLoginResponse> => {
   }
 
   // create access token , refresh token
-  const { _id, email: userEmail } = isUserExist;
+  const { _id, fullName } = isUserExist;
 
   const accessToken = jwtHelpers.createToken(
-    { _id, userEmail },
+    { _id, fullName },
     config.jwt.secret as Secret,
     config.jwt.expires_in as string,
   );
 
   const refreshToken = jwtHelpers.createToken(
-    { _id, userEmail },
+    { _id, fullName },
     config.jwt.refresh_secret as Secret,
     config.jwt.refresh_expires_in as string,
   );

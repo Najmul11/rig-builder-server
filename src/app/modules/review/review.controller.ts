@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Request, Response } from 'express';
 import catchAsyncError from '../../../shared/catchAsyncError';
 import { ReviewService } from './review.service';

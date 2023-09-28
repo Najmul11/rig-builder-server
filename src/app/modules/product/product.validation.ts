@@ -27,12 +27,7 @@ const createProductSchema = z.object({
         }),
       )
       .optional(),
-    images: z.array(
-      z.object({
-        url: z.string(),
-        altText: z.string(),
-      }),
-    ),
+    images: z.array(z.string()),
   }),
 });
 

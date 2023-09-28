@@ -34,14 +34,7 @@ const ProductSchema = new Schema<IProduct, Record<string, unknown>>({
   },
   images: [
     {
-      url: {
-        type: String,
-        required: true,
-      },
-      altText: {
-        type: String,
-        required: true,
-      },
+      type: String,
     },
   ],
 });

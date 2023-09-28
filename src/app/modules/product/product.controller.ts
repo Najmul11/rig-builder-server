@@ -24,6 +24,7 @@ const addProduct = catchAsyncError(async (req: Request, res: Response) => {
 
 const getAllProducts = catchAsyncError(async (req: Request, res: Response) => {
   const filters = pick(req.query, productFilterableFields);
+
   const paginationOptions = pick(req.query, paginationFields);
 
   const result = await ProductService.getAllProducts(
