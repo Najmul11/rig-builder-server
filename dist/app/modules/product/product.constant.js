@@ -1,11 +1,12 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.productFilterableFields = exports.productSearchableFields = void 0;
 exports.productSearchableFields = ['title', 'category'];
 exports.productFilterableFields = [
-  'searchTerm',
-  'minPrice',
-  'maxPrice',
-  'category',
-  'status',
+    'searchTerm',
+    'minPrice',
+    'maxPrice',
+    'category',
+    'status',
+    'featured',
 ];

@@ -9,10 +9,7 @@ export type IProduct = {
   status: 'In Stock ' | 'Out of stock';
   keyFeatures: string[];
   ratings: number;
-  images: {
-    url: string;
-    altText: string;
-  }[];
+  images: [string];
 };
 
 export type IProductFilters = {

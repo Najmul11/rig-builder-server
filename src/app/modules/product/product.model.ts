@@ -32,11 +32,9 @@ const ProductSchema = new Schema<IProduct, Record<string, unknown>>({
   ratings: {
     type: Number,
   },
-  images: [
-    {
-      type: String,
-    },
-  ],
+  images: {
+    type: [String],
+  },
 });
 
 export const Product = model<IProduct, ProductModel>('Product', ProductSchema);
